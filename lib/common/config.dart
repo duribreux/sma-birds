@@ -1,4 +1,4 @@
-const int environmentWidth = 500;
-const int environmentHeight = 500;
-const int nbOfBirds = 100;
+const int environmentWidth = 1280;
+const int environmentHeight = 720;
+const int nbOfBirds = 200;
 const int nbOfEagles = 0;

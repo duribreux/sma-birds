@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 
+import '../common/config.dart';
 import 'environment.dart';
 
 abstract class Agent extends PositionComponent {
@@ -16,5 +17,11 @@ abstract class Agent extends PositionComponent {
   @override
   void update(double dt) {
     action(dt);
+  }
+
+  void updatePositionInToricSpace() {
+    position
+      ..x %= environmentWidth
+      ..y %= environmentHeight;
   }
 }
