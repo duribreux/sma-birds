@@ -26,14 +26,6 @@ abstract class Sparrow extends Bird {
     limitSpeed();
   }
 
-  Vector2 limitSpeed() {
-    if (velocity.length > maxSpeed) {
-      velocity = (velocity / velocity.length) * maxSpeed;
-    }
-
-    return velocity;
-  }
-
   Vector2 cohesion(Iterable<Bird> birdsInSight) {
     if (birdsInSight.isEmpty) {
       return Vector2(0, 0);

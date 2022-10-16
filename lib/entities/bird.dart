@@ -26,6 +26,14 @@ abstract class Bird extends Agent {
     required this.maxSpeed,
   });
 
+  Vector2 limitSpeed() {
+    if (velocity.length > maxSpeed) {
+      velocity = (velocity / velocity.length) * maxSpeed;
+    }
+
+    return velocity;
+  }
+
   Iterable<Bird> getBirdsInSight() => environment.birds.where(
         (element) =>
             element.id != id &&
