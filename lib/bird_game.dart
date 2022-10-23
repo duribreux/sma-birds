@@ -57,14 +57,14 @@ class BirdGame extends FlameGame {
         random.nextDouble() * 9 * (random.nextBool() ? 1 : -1),
       ),
       fieldOfView: 230,
-      distanceView: 160,
-      collisionRange: 15,
-      maxBearingChange: 1,
-      maxSpeedChange: 1,
-      maxSpeed: 12,
-      cohesionFactor: 0.05,
-      separationFactor: 0.1,
-      alignmentFactor: 0.03,
+      distanceView: 50,
+      collisionRange: 10,
+      maxBearingChange: 0.15,
+      maxSpeedChange: 2,
+      maxSpeed: 15,
+      cohesionFactor: 0.0004,
+      separationFactor: 0.07,
+      alignmentFactor: 0.04,
     )
       ..position = Vector2(dx, dy)
       ..anchor = Anchor.topLeft;
@@ -81,14 +81,14 @@ class BirdGame extends FlameGame {
         random.nextDouble() * 13 * (random.nextBool() ? 1 : -1),
       ),
       fieldOfView: 180,
-      distanceView: 200,
+      distanceView: 40,
       collisionRange: 8,
-      maxBearingChange: 3,
+      maxBearingChange: 0.2,
       maxSpeedChange: 2,
-      maxSpeed: 20,
-      cohesionFactor: 0.1,
-      separationFactor: 0.2,
-      alignmentFactor: 0.1,
+      maxSpeed: 18,
+      cohesionFactor: 0.0005,
+      separationFactor: 0.05,
+      alignmentFactor: 0.05,
     )
       ..position = Vector2(dx, dy)
       ..anchor = Anchor.topLeft;
