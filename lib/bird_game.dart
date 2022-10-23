@@ -37,7 +37,7 @@ class BirdGame extends FlameGame {
     for (final bird in environment.birds) {
       await world.add(bird);
     }
-    
+
     await add(world);
 
     final cameraComponent = CameraComponent(world: world)
@@ -58,10 +58,13 @@ class BirdGame extends FlameGame {
       ),
       fieldOfView: 230,
       distanceView: 160,
-      collisionRange: 5,
+      collisionRange: 15,
       maxBearingChange: 1,
       maxSpeedChange: 1,
       maxSpeed: 12,
+      cohesionFactor: 0.5,
+      separationFactor: 0.9,
+      alignmentFactor: 0.3,
     )
       ..position = Vector2(dx, dy)
       ..anchor = Anchor.topLeft;
@@ -79,10 +82,13 @@ class BirdGame extends FlameGame {
       ),
       fieldOfView: 180,
       distanceView: 200,
-      collisionRange: 3,
+      collisionRange: 8,
       maxBearingChange: 3,
       maxSpeedChange: 2,
       maxSpeed: 20,
+      cohesionFactor: 0.8,
+      separationFactor: 0.6,
+      alignmentFactor: 0.9,
     )
       ..position = Vector2(dx, dy)
       ..anchor = Anchor.topLeft;

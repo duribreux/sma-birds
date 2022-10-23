@@ -13,6 +13,9 @@ abstract class Bird extends Agent {
   final double maxBearingChange;
   final double maxSpeedChange;
   final double maxSpeed;
+  final double cohesionFactor;
+  final double separationFactor;
+  final double alignmentFactor;
 
   Bird({
     required super.id,
@@ -24,7 +27,55 @@ abstract class Bird extends Agent {
     required this.maxBearingChange,
     required this.maxSpeedChange,
     required this.maxSpeed,
+    required this.cohesionFactor,
+    required this.separationFactor,
+    required this.alignmentFactor,
   });
+
+  Vector2 cohesion(Iterable<Bird> birdsInSight) {
+    if (birdsInSight.isEmpty) {
+      return Vector2(0, 0);
+    }
+
+    final center = birdsInSight.fold(
+          Vector2(0, 0),
+          (previousValue, element) => previousValue + element.position,
+        ) /
+        birdsInSight.length.toDouble();
+
+    return (center - position) * cohesionFactor;
+  }
+
+  Vector2 separation(Iterable<Bird> birdsInSight) {
+    if (birdsInSight.isEmpty) {
+      return Vector2(0, 0);
+    }
+
+    var vector = Vector2(0, 0);
+
+    for (final bird in birdsInSight) {
+      final d = position.distanceTo(bird.position);
+      if (d < collisionRange) {
+        vector -= bird.position - position;
+      }
+    }
+
+    return vector * separationFactor;
+  }
+
+  Vector2 alignment(Iterable<Bird> birdsInSight) {
+    if (birdsInSight.isEmpty) {
+      return Vector2(0, 0);
+    }
+
+    final averageVelocity = birdsInSight.fold(
+          Vector2(0, 0),
+          (previousValue, element) => previousValue + element.velocity,
+        ) /
+        birdsInSight.length.toDouble();
+
+    return averageVelocity * alignmentFactor;
+  }
 
   Vector2 limitSpeed() {
     if (velocity.length > maxSpeed) {

@@ -15,6 +15,9 @@ class PigeonComponent extends Pigeon {
     required super.maxBearingChange,
     required super.maxSpeedChange,
     required super.maxSpeed,
+    required super.cohesionFactor,
+    required super.separationFactor,
+    required super.alignmentFactor,
   });
 
   @override
