@@ -62,9 +62,9 @@ class BirdGame extends FlameGame {
       maxBearingChange: 1,
       maxSpeedChange: 1,
       maxSpeed: 12,
-      cohesionFactor: 0.5,
-      separationFactor: 0.9,
-      alignmentFactor: 0.3,
+      cohesionFactor: 0.05,
+      separationFactor: 0.1,
+      alignmentFactor: 0.03,
     )
       ..position = Vector2(dx, dy)
       ..anchor = Anchor.topLeft;
@@ -86,9 +86,9 @@ class BirdGame extends FlameGame {
       maxBearingChange: 3,
       maxSpeedChange: 2,
       maxSpeed: 20,
-      cohesionFactor: 0.8,
-      separationFactor: 0.6,
-      alignmentFactor: 0.9,
+      cohesionFactor: 0.1,
+      separationFactor: 0.2,
+      alignmentFactor: 0.1,
     )
       ..position = Vector2(dx, dy)
       ..anchor = Anchor.topLeft;
