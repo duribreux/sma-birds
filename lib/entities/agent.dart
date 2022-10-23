@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
 
-import '../common/config.dart';
+import '../bird_game.dart';
 import 'environment.dart';
 
-abstract class Agent extends PositionComponent {
+abstract class Agent extends PositionComponent with HasGameRef<BirdGame> {
   final int id;
   final Environment environment;
 
@@ -17,11 +17,13 @@ abstract class Agent extends PositionComponent {
   @override
   void update(double dt) {
     action(dt);
+    updatePositionInToricSpace();
+    super.update(dt);
   }
 
   void updatePositionInToricSpace() {
     position
-      ..x %= environmentWidth
-      ..y %= environmentHeight;
+      ..x %= gameRef.size.x
+      ..y %= gameRef.size.y;
   }
 }

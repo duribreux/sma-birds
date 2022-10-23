@@ -4,7 +4,6 @@ import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 
-import 'common/config.dart';
 import 'entities/environment.dart';
 import 'world/components/pigeon_component.dart';
 import 'world/components/sparrow_component.dart';
@@ -20,18 +19,10 @@ class BirdGame extends FlameGame {
 
     // Generate birds randomly
     List.generate(
-      nbOfBirds,
+      200,
       (index) {
-        var dx = random.nextDouble() * environmentWidth;
-        var dy = random.nextDouble() * environmentHeight;
-
-        if (random.nextBool()) {
-          dx *= -1;
-        }
-
-        if (random.nextBool()) {
-          dy *= -1;
-        }
+        final dx = random.nextDouble() * size.x;
+        final dy = random.nextDouble() * size.y;
 
         if (random.nextBool()) {
           addPigeon(index, environment, dx, dy);
@@ -48,10 +39,10 @@ class BirdGame extends FlameGame {
     }
     await add(world);
 
-    // Add camera
     final cameraComponent = CameraComponent(world: world)
       ..viewfinder.anchor = Anchor.topLeft
-      ..viewfinder.zoom = 0.5;
+      ..viewfinder.visibleGameSize = size
+      ..viewport.size = size;
 
     await add(cameraComponent);
   }
@@ -61,8 +52,8 @@ class BirdGame extends FlameGame {
       id: index,
       environment: environment,
       velocity: Vector2(
-        random.nextDouble() * 9,
-        random.nextDouble() * 9,
+        random.nextDouble() * 9 * (random.nextBool() ? 1 : -1),
+        random.nextDouble() * 9 * (random.nextBool() ? 1 : -1),
       ),
       fieldOfView: 230,
       distanceView: 160,
@@ -72,7 +63,7 @@ class BirdGame extends FlameGame {
       maxSpeed: 12,
     )
       ..position = Vector2(dx, dy)
-      ..size = Vector2.all(0.5);
+      ..anchor = Anchor.topLeft;
 
     environment.birds.add(bird);
   }
@@ -82,8 +73,8 @@ class BirdGame extends FlameGame {
       id: index,
       environment: environment,
       velocity: Vector2(
-        random.nextDouble() * 13,
-        random.nextDouble() * 13,
+        random.nextDouble() * 13 * (random.nextBool() ? 1 : -1),
+        random.nextDouble() * 13 * (random.nextBool() ? 1 : -1),
       ),
       fieldOfView: 180,
       distanceView: 200,
@@ -93,7 +84,7 @@ class BirdGame extends FlameGame {
       maxSpeed: 20,
     )
       ..position = Vector2(dx, dy)
-      ..size = Vector2.all(0.5);
+      ..anchor = Anchor.topLeft;
 
     environment.birds.add(bird);
   }

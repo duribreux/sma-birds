@@ -26,7 +26,7 @@ class PigeonComponent extends Pigeon {
 
     // Position
     canvas.drawCircle(
-      Offset(position.x, position.y),
+      Offset.zero,
       1,
       Paint()
         ..color = const Color(0xFFFFFFFF)
@@ -36,8 +36,8 @@ class PigeonComponent extends Pigeon {
     // Direction vector drawn.
     final n = velocity.normalized();
     canvas.drawLine(
-      Offset(position.x, position.y),
-      Offset(position.x + n.x * 10, position.y + n.y * 10),
+      Offset.zero,
+      Offset(n.x * 10, n.y * 10),
       Paint()
         ..color = const Color(0xFFFF0000)
         ..strokeWidth = 2
@@ -49,6 +49,5 @@ class PigeonComponent extends Pigeon {
   void action(double dt) {
     super.action(dt);
     position += velocity * dt;
-    updatePositionInToricSpace();
   }
 }
