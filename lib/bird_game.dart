@@ -37,6 +37,7 @@ class BirdGame extends FlameGame {
     for (final bird in environment.birds) {
       await world.add(bird);
     }
+    
     await add(world);
 
     final cameraComponent = CameraComponent(world: world)

@@ -45,16 +45,16 @@ abstract class Pigeon extends Bird {
       return Vector2(0, 0);
     }
 
-    var c = Vector2(0, 0);
+    var vector = Vector2(0, 0);
 
     for (final bird in birdsInSight) {
       final d = position.distanceTo(bird.position);
       if (d < collisionRange) {
-        c -= bird.position - position;
+        vector -= bird.position - position;
       }
     }
 
-    return c;
+    return vector;
   }
 
   Vector2 alignment(Iterable<Bird> birdsInSight) {
